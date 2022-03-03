@@ -1,30 +1,45 @@
 package codingTest;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Test {
-
     public static void main(String[] args) {
 
-        System.out.println();
-        int count = 0;
-        while(true) {
-            ++count;
-            ArrayList<Integer> arrayList = new ArrayList<>();
+//        String number = "211020101011";
+//
+//        String regEx = "0[0-9]+0";
+//
+//        Pattern pattern = Pattern.compile(regEx);
+//        Matcher matcher = pattern.matcher(number);
+//
+//        while (matcher.find()) {
+//            System.out.println(matcher.group());
+//
+//        }
 
-            for(int i = 0; i < 6; i++) {
-                arrayList.add((int)(Math.random() * 45) + 1);
-            }
+        String dateStr1 = "2016.09.15 01.00.04.302";
+        String dateStr2 = "0.302";
 
-            Collections.sort(arrayList);
-            System.out.println(arrayList);
+        try {
+            Date format1 = new SimpleDateFormat("yyyy.mm.dd hh.MM.ss.SSS").parse(dateStr1);
+            Date format2 = new SimpleDateFormat("ss.SSS").parse(dateStr2);
 
-            if(count == 5) {
-                break;
-            }
+            Calendar calendar = Calendar.getInstance();
+//            System.out.println(calendar.add(Calendar.MILLISECOND, 10));;
+
+            long result = (format1.getTime() - format2.getTime());
+            System.out.println("result : " + result);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+
     }
+
 }
