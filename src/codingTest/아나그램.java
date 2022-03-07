@@ -23,6 +23,5 @@ public class 아나그램 {
             System.out.println("NO");
         }
 
-
     }
 }
