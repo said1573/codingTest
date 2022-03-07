@@ -17,8 +17,8 @@ public class 피보나치 {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < answer.length; i++) {
-            sb.append(answer[i] + " ");
+        for (int j : answer) {
+            sb.append(j).append(" ");
         }
 
         System.out.println(sb.toString().trim());
