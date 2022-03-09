@@ -24,7 +24,6 @@ public class 이분검색 {
         System.out.println(Arrays.toString(array));
 
         for (int i = 0; i < array.length; i++) {
-
             if (array[i] == m) {
                 System.out.println(i + 1);
                 break;
