@@ -1,22 +1,20 @@
 package codingTest.backjoon;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class 동전교환 {
 
-    private static int answer = 0;
-    private static int maxNum;
-    private static int length;
+    private static int answer = Integer.MAX_VALUE;
+    private static int maxSum;
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        length = scanner.nextInt();
+        int length = scanner.nextInt();
         scanner.nextLine();
 
         String[] input1 = scanner.nextLine().split(" ");
-        maxNum = scanner.nextInt();
+        maxSum = scanner.nextInt();
 
         int[] array = new int[length];
         for (int i = 0; i < input1.length; i++) {
@@ -28,17 +26,21 @@ public class 동전교환 {
     }
 
     public int solution(int array[]) {
-        int result = 0;
-        return result;
+        DFS(0, 0, array);
+        return answer;
     }
 
     public void DFS(int count, int sum, int[] array) {
-        if (sum == maxNum) {
-            answer = count;
+        if (sum > maxSum) {
+            return;
+        }
+        if (sum == maxSum) {
+            answer = Math.min(answer, count);
             return;
         } else {
-            DFS(count + 1, sum + array[count], array);
-            DFS(count + 1, sum, array);
+            for (int i = 0; i < array.length; i++) {
+                DFS(count + 1, sum + array[i], array);
+            }
         }
     }
 }
