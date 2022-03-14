@@ -1,42 +1,48 @@
 package codingTest.test;
 
+import java.util.Arrays;
+
 class Solution {
-    public int solution(int n) {
-        int answer = 0;
 
-        for (int startNum = 1; startNum < n + 1; startNum++) {
-            answer += sum(startNum, n);
-        }
 
-        System.out.println("결과값 : " + answer);
+    private static int answer = 0;
+    private static int maxCount; // k개 이상
+    private static int maxSum;   // 선택한 보험의 최대금액
+
+    public static void main(String[] args) {
+
+        int[] arr = new int[]{2, 5, 3, 8, 1};
+        int k = 3;
+        int t = 11;
+
+        Solution solution = new Solution();
+        System.out.println(solution.solution(arr, k, t));
+    }
+
+    public int solution(int[] arr, int k, int t) {
+
+        maxCount = k;
+        maxSum = t;
+        Arrays.sort(arr);
+
+        DFS(0, 0, 0, arr);
+
         return answer;
     }
 
-    public int sum(int startNum, int n) {
-        int sum = 0;
+    public void DFS(int level, int sum, int count, int[] arr) {
 
-        for (int i = startNum; i < n + 1; i++) {
-            sum += i;
-
-            if (sum == n) {
-                return 1;
+        if (level == arr.length) {
+            if (sum <= maxSum) {
+                if (count >= maxCount) {
+                    answer++;
+                }
             }
+
+            return;
+        } else {
+            DFS(level + 1, sum + arr[level], count + 1, arr);
+            DFS(level + 1, sum, count, arr);
         }
-
-        return 0;
-    }
-
-    public static void main(String[] args) {
-        long start = 0;
-        long end = 0;
-
-        start = System.currentTimeMillis();
-
-        Solution solution = new Solution();
-        solution.solution(100000);
-
-        end = System.currentTimeMillis();
-        System.out.println("실행 시간 : " + (end - start) / 1000.0 + "초");
-
     }
 }
