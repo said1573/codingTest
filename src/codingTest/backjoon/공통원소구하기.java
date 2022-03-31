@@ -1,4 +1,4 @@
-package codingTest.fail;
+package codingTest.backjoon;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,23 +18,22 @@ public class 공통원소구하기 {
         scanner.nextLine();
         String[] input2 = scanner.nextLine().split(" ");
 
-        String result = String.join("", input2);
-
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < input1.length; i++) {
-            if (result.contains(input1[i])) {
-                list.add(Integer.valueOf(input1[i]));
+            int num = Integer.parseInt(input1[i]);
+            list.add(num);
+        }
+
+        List<Integer> answer = new ArrayList<>();
+        for (int i = 0; i < input2.length; i++) {
+            int num = Integer.parseInt(input2[i]);
+            if (list.contains(num)) {
+                answer.add(num);
             }
         }
 
-        Collections.sort(list);
+        Collections.sort(answer);
 
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            sb.append(list.get(i) + " ");
-        }
-
-        System.out.println(sb.toString().trim());
-
+        System.out.println(answer);
     }
 }
