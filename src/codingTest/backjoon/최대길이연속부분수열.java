@@ -1,4 +1,4 @@
-package codingTest.fail;
+package codingTest.backjoon;
 
 import java.util.Scanner;
 
