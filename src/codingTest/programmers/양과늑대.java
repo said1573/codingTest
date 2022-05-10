@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class 양과늑대 {
 
-    private static int sheep = 1;
-    private static int wolf  = 0;
+    private static int[] visited;
+    private static int answer = 0;
 
     public static void main(String[] args) {
 
@@ -19,27 +19,36 @@ public class 양과늑대 {
 
     public int solution(int[] info, int[][] edges) {
 
-        int answer = 0;
-        int startPoint = 0;
+        Arrays.sort(edges, (o1, o2) -> o1[0] - o2[0]);
 
-        for (int i = 0; i < edges.length -1; i++) {
-            System.out.println(Arrays.toString(edges[i]));
-
-            if (edges[i][0] == startPoint) {
-
-            }
-        }
+        visited = new int[info.length];
+        visited[0] = 1;
+        DFS(0, 1, 0, info, edges);
+        System.out.println(Arrays.deepToString(edges));
 
         return answer;
     }
 
-    public boolean checkState() {
-        boolean result = true;
+    public void DFS(int index, int sheep, int wolf, int[] info, int[][] edges) {
 
-        if (sheep < wolf) {
-            result = false;
+        if (sheep <= wolf) {
+            answer = Math.max(sheep, answer);
+            return;
         }
 
-        return result;
+        for (int i = 0; i < info.length; i++) {
+            if (edges[i][index] == index && visited[i] == 0) {
+
+                visited[i] = 1;
+                if (info[i] == 0) {
+                    DFS(i, sheep + 1, wolf, info, edges);
+                } else {
+                    DFS(i, sheep, wolf + 1, info, edges);
+                }
+                visited[i] = 0;
+
+            }
+        }
     }
+
 }
