@@ -1,21 +1,16 @@
 package codingTest.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class A {
-
-    int a = 1000;
-
-    public A() {
-        System.out.println("가");
-    }
-
-    public A(int x) {
-        System.out.println("나");
-    }
-
     public static void main(String[] args) {
-        B b1 = new B();
-        A b2 = new B(1);
-        System.out.println(b1.a + b2.a);
-    }
+        Map<String, Integer> map = new HashMap<>();
+        map.put("A", map.getOrDefault(map.get("A"), 0) + 1);
+        System.out.println(map);
 
+        map.put("A", map.getOrDefault(map.get("A"), 0));
+        System.out.println(map);
+
+    }
 }
