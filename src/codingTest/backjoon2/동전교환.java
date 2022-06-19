@@ -1,42 +1,38 @@
 package codingTest.backjoon2;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class 동전교환 {
 
-    static int n;
-    static int m;
-    static int[] dy;
-    static int[] coinArr;
-
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
-
-        n = sc.nextInt();
-        coinArr = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            coinArr[i] = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int size = scanner.nextInt();
+        int[] coin = new int[size];
+        for (int i = 0; i < coin.length; i++) {
+            coin[i] = scanner.nextInt();
         }
 
-        m = sc.nextInt();
-        dy = new int[m + 1];
-        for (int i = 1; i < dy.length; i++) {
-            dy[i] = Integer.MAX_VALUE;
-        }
+        int money = scanner.nextInt();
 
-        System.out.println(knapsack());
+        동전교환 java = new 동전교환();
+        System.out.println(java.solution(size, coin, money));
     }
 
-    static int knapsack() {
-        for (int coin : coinArr) {
-            for (int j = coin; j <= m; j++) {
-                int tmp = dy[j - coin] + 1;
-                if (dy[j] > tmp) dy[j] = tmp;
+    public int solution(int size, int[] coin, int money) {
+
+        int[] array = new int[money + 1];
+        Arrays.fill(array, Integer.MAX_VALUE);
+        array[0] = 0;
+
+        for (int i = 0; i < coin.length; i++) {
+            for (int j = coin[i]; j < array.length; j++) {
+                array[j] = Math.min(array[j], array[j - coin[i]] + 1);
             }
         }
-        return dy[m];
+
+        return array[money];
     }
 
 }
