@@ -1,8 +1,11 @@
 package codingTest.programmers;
 
+import java.sql.PreparedStatement;
+
 public class 단어변환 {
 
     private static int answer = 0;
+    private static int[] visited;
 
     public static void main(String[] args) {
 
@@ -19,26 +22,31 @@ public class 단어변환 {
     }
 
     public int solution(String begin, String target, String[] words) {
-        DFS(0, begin, target, words);
+        visited = new int[words.length];
+        DFS(0, 0, begin, target, words);
         return answer;
     }
 
-    public void DFS(int level, String begin, String target, String[] words) {
-
-        if (words[level].equals(target)) {
+    public void DFS(int level, int checkCount, String begin, String target, String[] words) {
+        if (begin.equals(target)) {
+            answer = checkCount;
             return;
         } else {
-            int count = 0;
-            for (int i = 0; i < begin.length(); i++) {
-                if (words[level].charAt(i) != begin.charAt(i)) {
-                    count++;
-                }
-            }
+            for (int i = 0; i < visited.length; i++) {
+                if (visited[i] == 0) {
+                    int count = 0;
+                    for (char c : begin.toCharArray()) {
+                        if (words[i].contains(String.valueOf(c))) {
+                            count++;
+                        }
+                    }
 
-            if (count == 1) {
-                answer++;
-                DFS(level + 1, begin, target, words);
-                DFS(level + 1, begin, target, words);
+                    if (count == 2) {
+                        visited[i] = 1;
+                        DFS(level + 1, checkCount + 1, words[i], target, words);
+                        visited[i] = 0;
+                    }
+                }
             }
 
         }

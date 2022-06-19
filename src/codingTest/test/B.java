@@ -1,8 +1,7 @@
 package codingTest.test;
 
-public class B extends A {
-
-    int a = 2000;
+public class B extends A{
+    int a = 20;
 
     public B() {
         System.out.println("다");

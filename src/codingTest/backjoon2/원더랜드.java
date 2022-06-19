@@ -2,18 +2,7 @@ package codingTest.backjoon2;
 
 import java.util.*;
 
-class Edge {
-    int v1;
-    int v2;
-    int cost;
 
-    Edge(int v1, int v2, int cost) {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.cost = cost;
-    }
-
-}
 
 public class 원더랜드 {
 
@@ -82,4 +71,15 @@ public class 원더랜드 {
         }
     }
 
+}
+class Edge {
+    int v1;
+    int v2;
+    int cost;
+
+    Edge(int v1, int v2, int cost) {
+        this.v1 = v1;
+        this.v2 = v2;
+        this.cost = cost;
+    }
 }

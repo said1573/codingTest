@@ -1,22 +1,25 @@
 package codingTest.backjoon;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.TreeSet;
 
 public class k번째큰수 {
 
     public static void main(String[] args) {
 
+        int answer = -1;
+
         Scanner scanner = new Scanner(System.in);
 
         String[] input1 = scanner.nextLine().trim().split(" ");
-//        int n = Integer.parseInt(input1[0]);
+        int n = Integer.parseInt(input1[0]);
         int k = Integer.parseInt(input1[1]);
 
-        String[] input2 = scanner.nextLine().trim().split(" ");
-
-        int[] array = new int[input2.length];
+        int[] array = new int[n];
         for (int i = 0; i < array.length; i++) {
-            array[i] = Integer.parseInt(input2[i]);
+            array[i] = scanner.nextInt();
         }
 
         TreeSet<Integer> treeSet = new TreeSet<>(Collections.reverseOrder());
@@ -30,13 +33,15 @@ public class k번째큰수 {
         }
 
         int count = 0;
-        for (int answer : treeSet) {
+        for (int num : treeSet) {
             count += 1;
             if (count == k) {
-                System.out.println(answer);
+                System.out.println(num);
                 break;
             }
         }
+
+        System.out.println(answer);
 
     }
 

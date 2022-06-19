@@ -1,7 +1,5 @@
 package codingTest.backjoon2;
 
-import codingTest.test.A;
-
 import java.util.*;
 
 public class 공주구하기 {
